@@ -1,16 +1,16 @@
+// Global Variables
 var playerName = window.prompt("What is your robot's name?");
-var playerHealth = 10;
+var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
-// logging multiple values
-console.log(playerName, playerAttack, playerHealth, playerMoney);
-
-var enemyName = "Roborto";
+// Enemies Start
+var enemyNames = ["Robort", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
+// Enemies End
 
-var fight = function() {
+var fight = function(enemyName) {
     // Alert players that they are starting the round
     window.alert("Welcome to Robot Gladiators!");
 
@@ -18,7 +18,7 @@ var fight = function() {
     var promptFight = window.prompt("Would you like to FIGHT  or SKIP this battle? Enter 'FIGHT' ro 'SKIP' to choose.");
     console.log(promptFight);
 
-    if( promptFight == "FIGHT" || promptFight == "fight"){
+    if( promptFight === "FIGHT" || promptFight === "fight"){
         //Subtract the value of 'playerAttack' from the value of 'enemyHealth' and use that result to update the value in the 'enemyHealth' variable
         enemyHealth = enemyHealth - playerAttack;
 
@@ -54,7 +54,7 @@ var fight = function() {
             window.alert(playerName  + " still has " + playerHealth + " health left!");
         }
     }
-    else if (promptFight == "SKIP" || promptFight == "skip"){
+    else if (promptFight === "SKIP" || promptFight === "skip"){
         // confirm player skip
         var confirmSkip = window.confirm("Are you sure you'd like to quit? ");
 
@@ -63,11 +63,13 @@ var fight = function() {
             window.alert(playerName + " has chosen to skip the fight! Goodbye... coward.");
             playerMoney = playerMoney -2;
             console.log(playerMoney);
+            
         }
+         // if no(false), sak question by running fight(); again.
         else {
             fight();
         }
-        // if no(false), sak question by running fight(); again.
+       
       
     }
     else {
@@ -76,4 +78,6 @@ var fight = function() {
 
 };
 
-fight();
+for(var i = 0; i < enemyNames.length; i++) {
+    fight(enemyNames[i]);
+}
